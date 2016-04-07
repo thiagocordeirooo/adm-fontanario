@@ -6,7 +6,6 @@
     HomeLoginController.$inject = ['$rootScope', '$location'];
 
     function HomeLoginController($rootScope, $location){
-        
         var vm = this;
         vm.login = login; 
         vm.logout = logout;

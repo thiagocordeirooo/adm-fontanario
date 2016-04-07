@@ -1,8 +1,18 @@
 (function(){
     'use strict';
 	
+	/*global angular*/
     angular.module('app').run(function($rootScope, $location){
-        $rootScope.isAuthenticated = false; 
+		$rootScope.theme = 'paper'; 	
+        sessionStorage.theme = 'paper';
+        
+        $rootScope.isAuthenticated = false;
+        $rootScope.trocaTema = trocaTema;
+        
+        function trocaTema(theme){
+        	sessionStorage.theme = theme;
+        	$rootScope.theme = sessionStorage.theme;
+        }
 
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
             if (next.authorize && !$rootScope.isAuthenticated) {
@@ -11,6 +21,7 @@
         });
     });
 
+	/*global toastr*/
     toastr.options = {
 	  "closeButton": false,
 	  "debug": false,
