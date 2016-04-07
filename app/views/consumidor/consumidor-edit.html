@@ -1,0 +1,24 @@
+    <div class="col-md-4 well panel-default" ng-controller="ConsumidorEditController">
+        <h4>{{acao}} Consumidor</h4>
+        <br/>
+        <form>
+            <div class="form-group">
+                <label for="lastName">Id</label>
+                <input type="text" class="form-control" id="Nome" ng-model="vm.consumidor.Id" ng-readonly="true">
+            </div>            
+            <div class="form-group">
+                <label for="firstName">Unidade Consumidora</label>
+                <input type="number" class="form-control" id="UnidadeConsumidora" ng-model="consumidor.UnidadeConsumidora" ng-readonly="isEdit">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Nome</label>
+                <input type="text" class="form-control" id="Nome" ng-model="consumidor.Nome">
+            </div>
+            <div class="form-group">
+                <label for="birthday">Ordem</label>
+                <input type="text" class="form-control" id="Ordem" ng-model="consumidor.Ordem">
+            </div>
+            <button type="button" class="btn btn-primary" ng-click="save()">Salvar</button>
+            <button type="button" class="btn btn-default" ng-click="newConsumidor()">Cancelar</button>
+        </form>
+    </div>

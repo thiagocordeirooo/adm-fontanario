@@ -1,0 +1,35 @@
+<div ng-controller="ConsumidorListController">
+<h2>Consumidores</h2>
+    <div class="col-md-12">
+        <input type="text" class="form-control" id="search" ng-model="search" placeholder="Pesquisar..." />    
+    </div>
+    
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th ng-click="sort('UnidadeConsumidora')" class="text-center col-md-2"><a href="#">Consumidor</a></th>
+                <th ng-click="sort('Nome')" class="text-center col-md-5"><a href="#">Nome</a></th>
+                <th class="text-center col-md-1">Ativo</th>
+                <th class="text-center col-md-4"><button class="btn btn-success btn-sm" ng-click="newConsumidor()">NOVO</button></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="c in consumidores|filter:search|orderBy:sortKey:reverse|itemsPerPage:8">
+                <td>{{ c.UnidadeConsumidora }}</td>
+                <td>{{ c.Nome }}</td>
+                <td class="text-center"><input type="checkbox" ng-model="c.Ativo" ng-disabled="true"/></td>
+                <td class="text-center">
+                    <input type="hidden" ng-model="c.Id"/>
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-sm" ng-click="vm.edit()">EDITAR</button>
+                        <button class="btn btn-warning btn-sm" ng-click="resetPassword(c)">REDEFINIR SENHA</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"></dir-pagination-controls>
+        
+    </div>
+</div>    
