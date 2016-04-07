@@ -4,15 +4,21 @@
     angular.module('app').config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                controller: 'HomeLoginController',
+                controller: 'HomeController',
                 controllerAs: 'vm',
-                templateUrl: 'app/views/home/login.html'
+                templateUrl: 'app/views/home/index.html',
+                authorize: true
             })
             .when('/index', {
                 controller: 'HomeController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/index.html',
                 authorize: true
+            })            
+            .when('/login', {
+                controller: 'HomeLoginController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/home/login.html',
             })
             .when('/consumidores', {
                 controller: 'ConsumidorListController',
@@ -24,6 +30,18 @@
                 controller: 'ConsumidorEditController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/consumidor/consumidor-edit.html',
+                authorize: true
+            })
+            .when('/adm/usuarios', {
+                controller: 'UsuarioListController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/usuario/usuario-list.html',
+                authorize: true
+            })
+            .when('/adm/log-integracao', {
+                controller: 'LogIntegracaoListController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/log-integracao/log-integracao-list.html',
                 authorize: true
             })            
             .otherwise({

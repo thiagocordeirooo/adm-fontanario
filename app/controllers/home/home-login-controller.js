@@ -6,7 +6,7 @@
     HomeLoginController.$inject = ['$rootScope', '$location'];
 
     function HomeLoginController($rootScope, $location){
-        $rootScope.isAuthenticated = false; 
+        
         var vm = this;
         vm.login = login; 
         vm.logout = logout;
@@ -27,7 +27,7 @@
         function logout(){
            alert(1);
            $rootScope.isAuthenticated = false; 
-           $location.path('/');
+           $location.path('/login');
         }
 
         function activate(){
