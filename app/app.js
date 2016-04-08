@@ -1,5 +1,6 @@
 (function(){
     'use strict';
-
-    angular.module('app', ['ngRoute']);
+    
+    /*global angular*/
+    angular.module('app', ['ngRoute', 'ngLoadingSpinner']);
 })();

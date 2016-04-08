@@ -15,7 +15,6 @@
 
         function activate(){
             // Inicializador
-            vm.user = { username : '', password : '', remember : false };
         }
     }
 })();

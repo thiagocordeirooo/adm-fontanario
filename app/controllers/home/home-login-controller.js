@@ -1,6 +1,7 @@
 (function(){
     'use strict';
 
+    /*galobal angular*/
     angular.module('app').controller('HomeLoginController', HomeLoginController);
 
     HomeLoginController.$inject = ['$rootScope', '$location'];
@@ -12,12 +13,8 @@
         activate();
         ////////////////////////////////////
 
-
         function login(user){
-            //toastr.success('certo', 'Sucesso');
             $rootScope.isAuthenticated = true;
-            console.log(user);
-
             $rootScope.user = user;
 
             $location.path('/index');
@@ -30,7 +27,7 @@
         }
 
         function activate(){
-            // Inicializador
+            $rootScope.isAuthenticated = false; 
             vm.user = { username : '', password : '', remember : false };
         }
     }
