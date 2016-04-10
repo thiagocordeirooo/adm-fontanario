@@ -35,7 +35,7 @@
             vm.orderBy = 'UnidadeConsumidora';
             vm.reverse = true;
             
-            $http.get('https://api-admfontanario.azurewebsites.net/api/consumidor').success(function (data) {
+            $http.get('http://localhost:11466/api//api/consumidor').success(function (data) {
                 vm.consumidores = data;
             });
         }

@@ -3,13 +3,14 @@
 	
 	/*global angular*/
     angular.module('app').run(function($rootScope, $location){
-		$rootScope.theme = 'paper'; 	
-        sessionStorage.theme = 'paper';
+		$rootScope.baseURL = 'http://api-admfontanario.azurewebsites.net/api/';		
+		//$rootScope.baseURL = 'http://localhost:11466/api/';		
+		
+		$rootScope.theme = 'paper';
         
-        $rootScope.isAuthenticated = false;
-        $rootScope.trocaTema = trocaTema;
+        $rootScope.changeTheme = changeTheme;
         
-        function trocaTema(theme){
+        function changeTheme(theme){
         	sessionStorage.theme = theme;
         	$rootScope.theme = sessionStorage.theme;
         }

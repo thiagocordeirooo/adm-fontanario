@@ -14,7 +14,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="c in vm.consumidores | filter:search | orderBy:vm.orderBy:vm.reverse">
+            
+            <tr dir-paginate="c in vm.consumidores | filter:search | orderBy:vm.orderBy:vm.reverse|itemsPerPage:10">
                 <td>{{ c.UnidadeConsumidora }}</td>
                 <td>{{ c.Nome }}</td>
                 <td class="text-center"><input type="checkbox" ng-model="c.Ativo" ng-disabled="true"/></td>
@@ -28,5 +29,8 @@
             </tr>
             </tbody>
         </table>
+        <div class="col-md-12">
+            <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"></dir-pagination-controls>
+        </div>
     </div>
 </div>
