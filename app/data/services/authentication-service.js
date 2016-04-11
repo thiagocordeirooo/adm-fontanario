@@ -9,39 +9,50 @@
         var service = {};
 
         service.Login = Login;
+        service.Logout = Logout;
         service.SetCredentials = SetCredentials;
         service.ClearCredentials = ClearCredentials;
 
         return service;
 
-        function Login(user) {
-            console.log($rootScope.baseURL + 'security/token');
+        function Login(user, callback) {
             var data = "grant_type=password&username=" + user.username + "&password=" + user.password;
             $http.post($rootScope.baseURL + 'security/token',
                 data,
                 {
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 })
-                .success(function (data) {
-                    SetCredentials(user, data);
+                .success(function (response) {
+                     callback(response);
                 })
                 .error(function (data) {
                     toastr.error(data.error_description, 'Falha ao autenticar');
                 });
         }
 
-        function SetCredentials(user, data) {           
+        function Logout(){
+            ClearCredentials();
+        }
+
+        function SetCredentials(user, data) {   
+            $rootScope.isAuthenticated = true;
             localStorage.setItem('token', data.access_token);
             //sessionStorage.setItem('token', data.access_token);
 
-            $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;         
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
 
-            $rootScope.currentUser = UserService.GetById(user.username);
+            $http.get($rootScope.baseURL + 'user?id=' + user.username ).success(function (data) {
+                $rootScope.currentUser = data;
+                $rootScope.theme = data.Theme;
+            });           
         }
 
         function ClearCredentials() {
-            $rootScope.globals = {};
-            $http.defaults.headers.common.Authorization = '';
+            $rootScope.isAuthenticated = false;
+            localStorage.removeItem('token');
+            $rootScope.currentUser = {};
+            $rootScope.theme = 'paper';
+            $http.defaults.headers.common = {Accept: "application/json, text/plain, */*"};
         }
     }
 

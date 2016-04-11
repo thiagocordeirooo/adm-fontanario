@@ -4,22 +4,25 @@
     /*galobal angular*/
     angular.module('app').controller('HomeLoginController', HomeLoginController);
 
-    HomeLoginController.$inject = ['AuthenticationService', '$rootScope', '$location', '$http'];
+    HomeLoginController.$inject = ['AuthenticationService', '$rootScope', '$location', '$http', '$timeout'];
 
-    function HomeLoginController(AuthenticationService, $rootScope, $location, $http){
+    function HomeLoginController(AuthenticationService, $rootScope, $location, $http, $timeout){
         var vm = this;
         vm.login = login; 
-        vm.logout = logout;
-        activate();
-        ////////////////////////////////////
+        
+////////////////////////////////////////////////        
+////////////////////////////////////////////////
+
+        (function initController() {
+            vm.user = { username : '', password : '', remember : false };
+            AuthenticationService.ClearCredentials();
+        })();
 
         function login(user){
-            AuthenticationService.Login(user, loginCallback)
-        }
-
-        function loginCallback(data){
-            $rootScope.isAuthenticated = true;
-            $location.path('/index');
+            AuthenticationService.Login(user, function (response) {                
+                AuthenticationService.SetCredentials(vm.user, response);                
+                $location.path('/');
+            });           
         }
 
         /*function login(user) {
@@ -44,18 +47,5 @@
                     toastr.error(data.error_description, 'Falha ao autenticar');
                 });
         }*/
-
-
-        function logout(){
-           alert(1);
-           $rootScope.isAuthenticated = false; 
-           $location.path('/login');
-        }
-
-        function activate(){
-            AuthenticationService.ClearCredentials();
-            $rootScope.isAuthenticated = false; 
-            vm.user = { username : '', password : '', remember : false };
-        }
     }
 })();

@@ -8,8 +8,7 @@
     function ConsumidorEditController($rootScope, $location, $routeParams){
         var vm = this;
 
-		vm.consumidor = { Id : $routeParams.id };
-
+		vm.consumidor = { 'UnidadeConsumidora' : parseInt($routeParams.id)  };
         activate();
         ////////////////////////////////////
 

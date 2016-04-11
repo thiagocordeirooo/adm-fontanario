@@ -15,8 +15,8 @@
         activate();
         ////////////////////////////////////
 
-        function edit(){
-            $location.path('/consumidores/edit/12345');
+        function edit(consumidor){
+            $location.path('/consumidores/edit/' + consumidor.UnidadeConsumidora);
         }
 
         function resetPassword(consumidor){
@@ -35,7 +35,7 @@
             vm.orderBy = 'UnidadeConsumidora';
             vm.reverse = true;
             
-            $http.get('http://localhost:11466/api//api/consumidor').success(function (data) {
+            $http.get($rootScope.baseURL + 'consumidor').success(function (data) {
                 vm.consumidores = data;
             });
         }

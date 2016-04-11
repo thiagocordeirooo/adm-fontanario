@@ -76,7 +76,7 @@
           </label>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="vm.login(vm.user)" ng-disabled="formLogin.$invalid">Entrar</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="vm.login(vm.user)" ng-disabled="formLogin.$invalid || spinnerActive">Entrar</button>
       </form>
 
     </div> <!-- /container -->
