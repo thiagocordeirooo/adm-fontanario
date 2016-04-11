@@ -3,7 +3,7 @@
 	
 	/*global angular*/
     angular.module('app').run(function($rootScope, $location){
-		$rootScope.baseURL = 'http://api-admfontanario.azurewebsites.net/api/';
+		$rootScope.baseURL = 'https://api-admfontanario.azurewebsites.net/api/';
 		//$rootScope.baseURL = 'http://localhost:11466/api/';		
 		
 		$rootScope.theme = 'paper';

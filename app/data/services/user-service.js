@@ -18,8 +18,8 @@
             return $http.get($rootScope.baseURL + 'user').then(handleSuccess, handleError('Error getting all users'));
         }
 
-        function GetById(id) {
-            return $http.get($rootScope.baseURL + 'user?id=' + id).then(handleSuccess, handleError('Error getting user by id'));
+        function GetById(id, callback) {
+            return $http.get($rootScope.baseURL + 'user?id=' + id).then(callback, handleError('Error getting user by id'));
         }
 
         function Create(user) {
@@ -33,6 +33,7 @@
         // private functions
 
         function handleSuccess(res) {
+            console.log(res.data);
             return res.data;
         }
 

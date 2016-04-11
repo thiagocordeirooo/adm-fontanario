@@ -1,6 +1,7 @@
 (function () {
     'use strict';
-
+    
+    /*global angular*/
     angular.module('app').factory('AuthenticationService', AuthenticationService);
 
     AuthenticationService.$inject = ['$http', '$rootScope', '$timeout', 'UserService'];
@@ -17,17 +18,13 @@
 
         function Login(user, callback) {
             var data = "grant_type=password&username=" + user.username + "&password=" + user.password;
-            $http.post($rootScope.baseURL + 'security/token',
-                data,
-                {
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                })
-                .success(function (response) {
-                     callback(response);
-                })
-                .error(function (data) {
-                    toastr.error(data.error_description, 'Falha ao autenticar');
-                });
+            $http.post($rootScope.baseURL + 'security/token', data, { headers: {'Content-Type': 'application/x-www-form-urlencoded'} })
+            .success(function (response) {
+                 callback(response);
+            })
+            .error(function (data) {
+                toastr.error(data.error_description, 'Falha ao autenticar');
+            });
         }
 
         function Logout(){
@@ -41,10 +38,16 @@
 
             $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
 
-            $http.get($rootScope.baseURL + 'user?id=' + user.username ).success(function (data) {
-                $rootScope.currentUser = data;
-                $rootScope.theme = data.Theme;
-            });           
+            var currentUser = UserService.GetById(user.username, function(res) {
+                console.log(res.data);
+                 $rootScope.currentUser = res.data;
+                 $rootScope.theme = res.data.Theme;
+            });
+            
+            // $http.get($rootScope.baseURL + 'user?id=' + user.username ).success(function (data) {
+            //     $rootScope.currentUser = data;
+            //     $rootScope.theme = data.Theme;
+            // });
         }
 
         function ClearCredentials() {
