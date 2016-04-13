@@ -4,9 +4,9 @@
     /*global angular*/
     angular.module('app').controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$rootScope', '$location'];
+    HomeController.$inject = ['$rootScope', '$location', 'UserService'];
 
-    function HomeController($rootScope, $location){
+    function HomeController($rootScope, $location, UserService){
         var vm = this;
         
         activate();
@@ -15,6 +15,7 @@
 
         function activate(){
             // Inicializador
+
         }
     }
 })();
