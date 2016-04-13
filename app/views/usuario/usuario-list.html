@@ -1,1 +1,26 @@
 <h2>Usuários</h2>
+<div class="col-md-12">
+    <input type="text" class="form-control" id="search" ng-model="search" placeholder="Pesquisar..." />    
+</div>
+<div class="col-md-12">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th ng-click="vm.sort('UserName')" class="text-left col-md-3"><a href="">Login</a></th>
+            <th ng-click="vm.sort('Name')" class="text-left col-md-6"><a href="">Nome</a></th>
+            <th ng-click="vm.sort('Email')" class="text-left col-md-3"><a href="">E-mail</a></th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr dir-paginate="c in vm.usuarios | filter:search | orderBy:vm.orderBy:vm.reverse|itemsPerPage:10">
+            <td>{{ c.UserName }}</td>
+            <td>{{ c.Name }}</td>
+            <td>{{ c.Email }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="col-md-12">
+        <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"></dir-pagination-controls>
+    </div>
+</div>

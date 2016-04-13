@@ -3,17 +3,21 @@
 
     angular.module('app').controller('UsuarioListController', UsuarioListController);
 
-    UsuarioListController.$inject = ['$rootScope', '$location'];
+    UsuarioListController.$inject = ['$rootScope', '$location', 'UserService'];
 
-    function UsuarioListController($rootScope, $location){
+    function UsuarioListController($rootScope, $location, UserService){
         var vm = this;
+        vm.sort = sort;
         
-        activate();
-        ////////////////////////////////////
+        UserService.GetAll(function (res){
+            vm.usuarios = res.data;
+        });
 
-        function activate(){
-            // Inicializador
-
+        function sort(orderBy){
+            vm.orderBy = orderBy;
+            vm.reverse = !vm.reverse;
         }
+        vm.orderBy = 'Name';
+        vm.reverse = true;
     }
 })();
