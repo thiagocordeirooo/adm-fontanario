@@ -38,16 +38,10 @@
 
             $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
 
-            var currentUser = UserService.GetById(user.username, function(res) {
-                console.log(res.data);
+            UserService.GetById(user.username, function(res) {
                  $rootScope.currentUser = res.data;
                  $rootScope.theme = res.data.Theme;
             });
-            
-            // $http.get($rootScope.baseURL + 'user?id=' + user.username ).success(function (data) {
-            //     $rootScope.currentUser = data;
-            //     $rootScope.theme = data.Theme;
-            // });
         }
 
         function ClearCredentials() {

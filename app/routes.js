@@ -18,8 +18,14 @@
             .when('/login', {
                 controller: 'HomeLoginController',
                 controllerAs: 'vm',
-                templateUrl: 'app/views/home/login.html',
+                templateUrl: 'app/views/home/login.html'
             })
+            .when('/meu-usuario', {
+                controller: 'MeuUsuarioEditController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/usuario/meu-usuario-edit.html',
+                authorize: true
+            })            
             .when('/consumidores', {
                 controller: 'ConsumidorListController',
                 controllerAs: 'vm',

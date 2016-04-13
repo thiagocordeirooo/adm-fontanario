@@ -14,20 +14,20 @@
 
         return service;
 
-        function GetAll() {
-            return $http.get($rootScope.baseURL + 'user').then(handleSuccess, handleError('Error getting all users'));
+        function GetAll(callbackSuccess) {
+            return $http.get($rootScope.baseURL + 'user').then(callbackSuccess, handleError('Error getting all users'));
         }
 
-        function GetById(id, callback) {
-            return $http.get($rootScope.baseURL + 'user?id=' + id).then(callback, handleError('Error getting user by id'));
+        function GetById(id, callbackSuccess) {
+            return $http.get($rootScope.baseURL + 'user/' + id).then(callbackSuccess, handleError('Error getting user by id'));
         }
 
-        function Create(user) {
-            return $http.post($rootScope.baseURL + 'user', user).then(handleSuccess, handleError('Error creating user'));
+        function Create(user, callbackSuccess) {
+            return $http.post($rootScope.baseURL + 'user', user).then(callbackSuccess, handleError('Error creating user'));
         }
 
-        function Update(user) {
-            return $http.put($rootScope.baseURL + 'user' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+        function Update(user, callbackSuccess) {
+            return $http.put($rootScope.baseURL + 'user' , user).then(callbackSuccess, handleError('Erro ao atualizar usuário.'));
         }
 
         // private functions
@@ -35,12 +35,6 @@
         function handleSuccess(res) {
             console.log(res.data);
             return res.data;
-        }
-
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
         }
     }
 

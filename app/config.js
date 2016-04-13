@@ -24,6 +24,8 @@
         });
     });
 
+
+
 	/*global toastr*/
     toastr.options = {
 	  "closeButton": false,

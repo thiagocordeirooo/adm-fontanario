@@ -1,24 +1,67 @@
-    <div class="col-md-4 well panel-default" ng-controller="ConsumidorEditController">
-        <h4>{{acao}} Consumidor</h4>
-        <br/>
-        <form>
-            <div class="form-group">
-                <label for="lastName">Id</label>
-                <input type="text" class="form-control" id="Nome" ng-model="vm.consumidor.Id" ng-readonly="true">
-            </div>            
-            <div class="form-group">
-                <label for="firstName">Unidade Consumidora</label>
-                <input type="number" string-to-number class="form-control" id="UnidadeConsumidora" ng-model="vm.consumidor.UnidadeConsumidora" ng-readonly="isEdit">
-            </div>
-            <div class="form-group">
-                <label for="lastName">Nome</label>
-                <input type="text" class="form-control" id="Nome" ng-model="consumidor.Nome">
-            </div>
-            <div class="form-group">
-                <label for="birthday">Ordem</label>
-                <input type="text" class="form-control" id="Ordem" ng-model="consumidor.Ordem">
-            </div>
-            <button type="button" class="btn btn-primary" ng-click="save()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Salvar</button>
-            <button type="button" class="btn btn-default" ng-click="newConsumidor()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</button>
-        </form>
-    </div>
+<h2>Editar Consumidor</h2>
+<div class="col-md-12 well panel-default" ng-controller="ConsumidorEditController">   
+    <form name="formConsumidor">
+
+        <div class="form-group col-md-2">
+            <label for="unidadeConsumidora">Unidade Consumidora</label>
+            <input type="number" string-to-number class="form-control" name="unidadeConsumidora" id="unidadeConsumidora" ng-model="vm.consumidor.UnidadeConsumidora" ng-readonly="true">
+        </div>
+
+        <div class="form-group col-md-1">
+            <label for="ordem">Ordem</label>
+            <input type="number" class="form-control" name="ordem" name="ordem" id="ordem" ng-model="vm.consumidor.Ordem">
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="form-group col-md-6" ng-class="{ 'has-error' : formConsumidor.nome.$invalid && !formConsumidor.nome.$pristine }">
+            <label>Nome</label>
+            <input type="text" name="nome" class="form-control" placeholder="Nome" ng-model="vm.consumidor.Nome" required ng-maxlength="100">
+            <p ng-show="formConsumidor.nome.$error.required && !formConsumidor.nome.$pristine" class="help-block">Campo Obrigatório</p>
+            <p ng-show="formConsumidor.nome.$error.maxlength && !formConsumidor.nome.$pristine" class="help-block">Máximo 100 caracteres</p>
+
+        </div>
+
+        <div class="form-group col-md-3" ng-class="{ 'has-error' : formConsumidor.email.$invalid && !formConsumidor.email.$pristine }">
+            <label>E-mail</label>
+            <input type="email" name="email" class="form-control" placeholder="E-mail" ng-model="vm.consumidor.Email">
+            <p ng-show="formConsumidor.email.$invalid && !formConsumidor.email.$pristine" class="help-block">E-mail inválido</p>
+        </div>   
+
+        <div class="form-group col-md-3" ng-class="{ 'has-error' : formConsumidor.telefone.$invalid && !formConsumidor.telefone.$pristine }">
+            <label for="telefone">Telefone</label>
+            <input type="number" class="form-control" name="telefone" id="telefone" ng-model="vm.consumidor.Telefone" ng-maxlength="13" />
+            <p ng-show="formConsumidor.telefone.$error.maxlength && !formConsumidor.telefone.$pristine" class="help-block">Máximo 13 caracteres</p>
+        </div>          
+        <div class="clearfix"></div>
+
+        <div class="form-group col-md-8" ng-class="{ 'has-error' : formConsumidor.endereco.$invalid && !formConsumidor.endereco.$pristine }">
+            <label>Endereço</label>
+            <input type="text" name="endereco" class="form-control" placeholder="Endereço" ng-model="vm.consumidor.Endereco" required ng-maxlength="100">
+            <p ng-show="formConsumidor.endereco.$invalid && !formConsumidor.endereco.$pristine" class="help-block">Campo Obrigatório</p>
+            <p ng-show="formConsumidor.endereco.$error.maxlength && !formConsumidor.endereco.$pristine" class="help-block">Máximo 100 caracteres</p>
+        </div>
+
+        <div class="form-group col-md-1">
+            <label for="enderecoNumero">Número</label>
+            <input type="number" class="form-control" name="enderecoNumero" id="enderecoNumero" ng-model="vm.consumidor.EnderecoNumero">
+        </div>         
+
+        <div class="form-group col-md-3">
+            <label for="bairro">Bairro</label>
+            <input type="text" class="form-control" id="bairro" ng-model="vm.consumidor.Bairro">
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="form-group col-md-1">
+          <label>
+            <input type="checkbox" class="form-group" id="ativo" ng-model="vm.consumidor.Ativo"> Ativo
+          </label>
+        </div>
+
+        
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary" ng-click="vm.save(vm.consumidor)" ng-disabled="formConsumidor.$invalid || spinnerActive"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Salvar</button>
+            <button type="button" class="btn btn-default" ng-click="vm.cancel()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</button>
+        </div>
+    </form>
+</div>

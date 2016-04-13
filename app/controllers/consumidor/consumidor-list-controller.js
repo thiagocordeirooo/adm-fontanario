@@ -4,9 +4,9 @@
     /*global angular*/
     angular.module('app').controller('ConsumidorListController', ConsumidorListController);
 
-    ConsumidorListController.$inject = ['$scope','$timeout', '$rootScope', '$location', '$http'];
+    ConsumidorListController.$inject = ['$scope','$timeout', '$rootScope', '$location', '$http', 'ConsumidorService'];
 
-    function ConsumidorListController($scope, $timeout, $rootScope, $location, $http){
+    function ConsumidorListController($scope, $timeout, $rootScope, $location, $http, ConsumidorService){
         var vm = this;
         vm.edit = edit;
         vm.resetPassword = resetPassword;
@@ -35,8 +35,8 @@
             vm.orderBy = 'UnidadeConsumidora';
             vm.reverse = true;
             
-            $http.get($rootScope.baseURL + 'consumidor').success(function (data) {
-                vm.consumidores = data;
+            ConsumidorService.GetAll(function (res){
+                vm.consumidores = res.data;
             });
         }
     }
