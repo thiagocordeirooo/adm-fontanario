@@ -1,10 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('app').factory('UserService', UserService);
+    angular.module('app').factory('UsuarioService', UsuarioService);
 
-    UserService.$inject = ['$http', '$rootScope'];
-    function UserService($http, $rootScope) {
+    UsuarioService.$inject = ['$http', '$rootScope'];
+    function UsuarioService($http, $rootScope) {
         var service = {};
 
         service.GetAll = GetAll;

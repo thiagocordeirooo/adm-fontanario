@@ -9,23 +9,17 @@
                 templateUrl: 'app/views/home/index.html',
                 authorize: true
             })
+            .when('/login', {
+                controller: 'AuthenticationController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/home/authentication.html'
+            })
             .when('/index', {
                 controller: 'HomeController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/index.html',
                 authorize: true
-            })            
-            .when('/login', {
-                controller: 'HomeLoginController',
-                controllerAs: 'vm',
-                templateUrl: 'app/views/home/login.html'
-            })
-            .when('/meu-usuario', {
-                controller: 'MeuUsuarioEditController',
-                controllerAs: 'vm',
-                templateUrl: 'app/views/usuario/meu-usuario-edit.html',
-                authorize: true
-            })            
+            })         
             .when('/consumidores', {
                 controller: 'ConsumidorListController',
                 controllerAs: 'vm',
@@ -44,6 +38,19 @@
                 templateUrl: 'app/views/usuario/usuario-list.html',
                 authorize: true
             })
+            .when('/adm/usuarios/edit/:id', {
+                controller: 'UsuarioEditController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/usuario/usuario-edit.html',
+                authorize: true
+            })            
+            .when('/meu-usuario', {
+                controller: 'UsuarioEditController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/usuario/usuario-edit.html',
+                authorize: true, 
+                param: 'myUser'
+            })              
             .when('/adm/log-integracao', {
                 controller: 'LogIntegracaoListController',
                 controllerAs: 'vm',

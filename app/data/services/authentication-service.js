@@ -4,15 +4,12 @@
     /*global angular*/
     angular.module('app').factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$rootScope', '$timeout', 'UserService'];
+    AuthenticationService.$inject = ['$http', '$rootScope'];
 
-    function AuthenticationService($http, $rootScope, $timeout, UserService) {
+    function AuthenticationService($http, $rootScope) {
         var service = {};
 
         service.Login = Login;
-        service.Logout = Logout;
-        service.SetCredentials = SetCredentials;
-        service.ClearCredentials = ClearCredentials;
 
         return service;
 
@@ -27,30 +24,6 @@
             });
         }
 
-        function Logout(){
-            ClearCredentials();
-        }
-
-        function SetCredentials(user, data) {   
-            $rootScope.isAuthenticated = true;
-            localStorage.setItem('token', data.access_token);
-            //sessionStorage.setItem('token', data.access_token);
-
-            $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
-
-            UserService.GetById(user.username, function(res) {
-                 $rootScope.currentUser = res.data;
-                 $rootScope.theme = res.data.Theme;
-            });
-        }
-
-        function ClearCredentials() {
-            $rootScope.isAuthenticated = false;
-            localStorage.removeItem('token');
-            $rootScope.currentUser = {};
-            $rootScope.theme = 'paper';
-            $http.defaults.headers.common = {Accept: "application/json, text/plain, */*"};
-        }
     }
 
     // Base64 encoding service used by AuthenticationService
