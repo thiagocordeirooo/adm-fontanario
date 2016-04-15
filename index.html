@@ -3,17 +3,12 @@
 <head lang="en">
     <title>Sistema de Administração Fontanário Caldas Imperatriz</title>
     <meta charset="UTF-8">
+    <meta name="theme-color" content="{{ themeColor }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         
     <link rel="stylesheet" ng-href="bower_components/bootswatch/{{ theme }}/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/toastr/toastr.min.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    
-    <style type="text/css">
-        .responsive-width {
-            font-size: 3vw;
-        }
-    </style>
 </head>
 <body>
 
@@ -25,14 +20,6 @@
 
 <span us-spinner="{radius:30, width:8, length: 16}" name="spinner"></span>
 
-<script>
-        function handleError(response) {
-            return function () {
-                window.location = '#/login';
-                return;
-            };
-        }    
-</script>
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -54,21 +41,21 @@
 <script src="app/routes.js"></script>
 <script src="app/config.js"></script>
 
+<!--services-->
 <script src="app/data/services/consumidor-service.js"></script>
 <script src="app/data/services/usuario-service.js"></script>
 <script src="app/data/services/authentication-service.js"></script>
+<!--services-->
 
-
-<script src="app/controllers/home/home-controller.js"></script>
+<!--controllers-->
 <script src="app/controllers/home/authentication-controller.js"></script>
+<script src="app/controllers/home/home-controller.js"></script>
+<script src="app/controllers/usuario/usuario-list-controller.js"></script>
 <script src="app/controllers/usuario/usuario-edit-controller.js"></script>
-
 <script src="app/controllers/consumidor/consumidor-list-controller.js"></script>
 <script src="app/controllers/consumidor/consumidor-edit-controller.js"></script>
-
-<script src="app/controllers/usuario/usuario-list-controller.js"></script>
 <script src="app/controllers/log-integracao/log-integracao-list-controller.js"></script>
-
+<!--controllers-->
 
 </body>
 </html>

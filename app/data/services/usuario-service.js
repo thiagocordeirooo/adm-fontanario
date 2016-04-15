@@ -1,6 +1,7 @@
 (function () {
     'use strict';
 
+    /*global angular*/
     angular.module('app').factory('UsuarioService', UsuarioService);
 
     UsuarioService.$inject = ['$http', '$rootScope'];
@@ -15,25 +16,24 @@
         return service;
 
         function GetAll(callbackSuccess) {
-            return $http.get($rootScope.baseURL + 'user').then(callbackSuccess, handleError('Error getting all users'));
+            return $http.get($rootScope.baseURL + 'user').then(callbackSuccess);
         }
 
         function GetById(id, callbackSuccess) {
-            return $http.get($rootScope.baseURL + 'user/' + id).then(callbackSuccess, handleError('Error getting user by id'));
+            return $http.get($rootScope.baseURL + 'user/' + id).then(callbackSuccess);
         }
 
         function Create(user, callbackSuccess) {
-            return $http.post($rootScope.baseURL + 'user', user).then(callbackSuccess, handleError('Error creating user'));
+            return $http.post($rootScope.baseURL + 'user', user).then(callbackSuccess);
         }
 
         function Update(user, callbackSuccess) {
-            return $http.put($rootScope.baseURL + 'user' , user).then(callbackSuccess, handleError('Erro ao atualizar usuário.'));
+            return $http.put($rootScope.baseURL + 'user' , user).then(callbackSuccess);
         }
 
         // private functions
 
         function handleSuccess(res) {
-            console.log(res.data);
             return res.data;
         }
     }

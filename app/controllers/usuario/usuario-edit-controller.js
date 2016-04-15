@@ -32,7 +32,7 @@
                 if (vm.myUser) {
                     updateCookie(res);
                 }
-
+                /*global toastr*/
                 toastr.success('Operação efetuada com sucesso.');
             });
         }
@@ -40,7 +40,9 @@
         function updateCookie(res){
             $rootScope.currentUser = res.data;
             $rootScope.theme = res.data.Theme;
+            setThemeColor($rootScope.theme);
 
+            /*global angular*/
             var objCookie = angular.fromJson($cookies.get('_c'));
             objCookie.currentuser = res.data;
 
@@ -54,7 +56,23 @@
             }else{
                 $location.path('/adm/usuarios');
             }
-            
         }
+        
+        function setThemeColor(theme){
+            switch (theme) {
+                case 'paper':
+                    $rootScope.themeColor = '#93C54B';
+                    break;
+                case 'sandstone':
+                    $rootScope.themeColor = '#2196F3';
+                    break;
+                case 'superhero':
+                    $rootScope.themeColor = '#DF691A';
+                    break;
+                case 'yeti':
+                    $rootScope.themeColor = '#008CBA';
+                    break;                    
+            }
+        }        
     }
 })();

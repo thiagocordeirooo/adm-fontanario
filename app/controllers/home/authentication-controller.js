@@ -1,7 +1,7 @@
 (function(){
     'use strict';
 
-    /*galobal angular*/
+    /*global angular*/
     angular.module('app').controller('AuthenticationController', AuthenticationController);
 
     AuthenticationController.$inject = ['$rootScope', '$location', '$http', '$cookies', 'AuthenticationService', 'UsuarioService'];
@@ -33,6 +33,7 @@
             UsuarioService.GetById(user.username, function(res) {
                  $rootScope.currentUser = res.data;
                  $rootScope.theme = res.data.Theme;
+                 setThemeColor($rootScope.theme);
                  
                 var objCookie = { 'token' : data.access_token, 'currentuser' : res.data };
                 $cookies.put('_c', JSON.stringify(objCookie));
@@ -45,7 +46,26 @@
             $cookies.remove('_c');
             $rootScope.currentUser = {};
             $rootScope.theme = 'paper';
+            setThemeColor($rootScope.theme);
             $http.defaults.headers.common = {Accept: "application/json, text/plain, */*"};
-        }        
+        }
+        
+        function setThemeColor(theme){
+            switch (theme) {
+                case 'paper':
+                    $rootScope.themeColor = '#2196F3';
+                    break;
+                case 'sandstone':
+                    $rootScope.themeColor = '#93C54B';
+                    break;
+                case 'superhero':
+                    $rootScope.themeColor = '#DF691A';
+                    break;
+                case 'yeti':
+                    $rootScope.themeColor = '#008CBA';
+                    break;                    
+            }
+        }
+        
     }
 })();

@@ -20,6 +20,7 @@
                  callback(response);
             })
             .error(function (data) {
+                /*global toastr*/
                 toastr.error(data.error_description, 'Falha ao autenticar');
             });
         }

@@ -12,8 +12,12 @@
         vm.resetPassword = resetPassword;
         vm.sort = sort;
 
-        activate();
-        ////////////////////////////////////
+        vm.orderBy = 'UnidadeConsumidora';
+        vm.reverse = true;
+        
+        ConsumidorService.GetAll(function callbackSuccess(res){
+            vm.consumidores = res.data;
+        });
 
         function edit(consumidor){
             $location.path('/consumidores/edit/' + consumidor.UnidadeConsumidora);
@@ -29,15 +33,6 @@
         function sort(orderBy){
             vm.orderBy = orderBy;
             vm.reverse = !vm.reverse;
-        }
-        
-        function activate(){
-            vm.orderBy = 'UnidadeConsumidora';
-            vm.reverse = true;
-            
-            ConsumidorService.GetAll(function (res){
-                vm.consumidores = res.data;
-            });
         }
     }
 })();

@@ -1,7 +1,30 @@
 (function(){
     'use strict';
 
-    angular.module('app').config(function ($routeProvider) {
+    /*global angular*/
+    angular.module('app').factory('sessionRecoverer', ['$location', '$q', '$injector', function($location, $q, $injector) {  
+        var sessionRecoverer = {
+            responseError: function(response) {
+                if (response.status == 401){
+                    $location.path('/login');
+                    /*global toastr*/
+                    toastr.info('Sua sessão expirou, faça o login novamente.');
+                }
+                return $q.reject(response);
+            }
+        };
+        return sessionRecoverer;
+    }]);
+    
+    
+    /*global angular*/
+    angular.module('app').config(config);
+    
+    config.$inject = ['$routeProvider', '$httpProvider'];
+    function config($routeProvider, $httpProvider) {
+
+        $httpProvider.interceptors.push('sessionRecoverer');        
+        
         $routeProvider
             .when('/', {
                 controller: 'HomeController',
@@ -48,7 +71,7 @@
                 controller: 'UsuarioEditController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/usuario/usuario-edit.html',
-                authorize: true, 
+                authorize: true,
                 param: 'myUser'
             })              
             .when('/adm/log-integracao', {
@@ -62,5 +85,7 @@
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/404.html'
             });
-    });
+            
+    }
+    
 })();

@@ -1,6 +1,7 @@
 (function () {
     'use strict';
-
+    
+    /*global angular*/
     angular.module('app').factory('ConsumidorService', ConsumidorService);
 
     ConsumidorService.$inject = ['$http', '$rootScope'];
@@ -15,19 +16,19 @@
         return service;
 
         function GetAll(callbackSuccess) {
-            return $http.get($rootScope.baseURL + 'consumidor').then(callbackSuccess, handleError('Erro ao buscar os consumidores.'));
+            return $http.get($rootScope.baseURL + 'consumidor').then(callbackSuccess);
         }
 
         function GetById(id, callbackSuccess) {
-            return $http.get($rootScope.baseURL + 'consumidor/' + id).then(callbackSuccess,handleError('Erro ao buscar o consumidore.'));
+            return $http.get($rootScope.baseURL + 'consumidor/' + id).then(callbackSuccess);
         }
 
         function Create(consumidor, callbackSuccess) {
-            return $http.post($rootScope.baseURL + 'consumidor', consumidor).then(callbackSuccess, handleError('Error creating user'));
+            return $http.post($rootScope.baseURL + 'consumidor', consumidor).then(callbackSuccess);
         }
 
         function Update(consumidor, callbackSuccess) {
-            return $http.put($rootScope.baseURL + 'consumidor', consumidor).then(callbackSuccess, handleError('Error updating user'));
+            return $http.put($rootScope.baseURL + 'consumidor', consumidor).then(callbackSuccess);
         }
 
         // private functions

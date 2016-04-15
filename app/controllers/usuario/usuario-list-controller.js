@@ -1,6 +1,7 @@
 (function(){
     'use strict';
 
+    /*global angular*/
     angular.module('app').controller('UsuarioListController', UsuarioListController);
 
     UsuarioListController.$inject = ['$rootScope', '$location', 'UsuarioService'];
