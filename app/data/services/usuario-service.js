@@ -4,8 +4,8 @@
     /*global angular*/
     angular.module('app').factory('UsuarioService', UsuarioService);
 
-    UsuarioService.$inject = ['$http', '$rootScope'];
-    function UsuarioService($http, $rootScope) {
+    UsuarioService.$inject = ['$http', 'CONSTANTS'];
+    function UsuarioService($http, CONSTANTS) {
         var service = {};
 
         service.GetAll = GetAll;
@@ -16,19 +16,19 @@
         return service;
 
         function GetAll(callbackSuccess) {
-            return $http.get($rootScope.baseURL + 'user').then(callbackSuccess);
+            return $http.get(CONSTANTS.baseURL + 'user').then(callbackSuccess);
         }
 
         function GetById(id, callbackSuccess) {
-            return $http.get($rootScope.baseURL + 'user/' + id).then(callbackSuccess);
+            return $http.get(CONSTANTS.baseURL + 'user/' + id).then(callbackSuccess);
         }
 
         function Create(user, callbackSuccess) {
-            return $http.post($rootScope.baseURL + 'user', user).then(callbackSuccess);
+            return $http.post(CONSTANTS.baseURL + 'user', user).then(callbackSuccess);
         }
 
         function Update(user, callbackSuccess) {
-            return $http.put($rootScope.baseURL + 'user' , user).then(callbackSuccess);
+            return $http.put(CONSTANTS.baseURL + 'user' , user).then(callbackSuccess);
         }
 
         // private functions

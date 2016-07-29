@@ -8,14 +8,5 @@
 
     function HomeController($rootScope, $location, UsuarioService){
         var vm = this;
-        
-        activate();
-        ////////////////////////////////////
-
-
-        function activate(){
-            // Inicializador
-
-        }
     }
 })();

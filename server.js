@@ -10,5 +10,5 @@ app.get('/', function (req, res) {
 });
 
 app.listen(4000, function () {
-  console.log('Running in por 4000!'); 
+  console.log('Running in port 4000!'); 
 });

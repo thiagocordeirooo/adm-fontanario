@@ -23,6 +23,5 @@
         function cancel(){
             $location.path('/consumidores');
         }
-
     }
 })();

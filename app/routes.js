@@ -2,7 +2,7 @@
     'use strict';
 
     /*global angular*/
-    angular.module('app').factory('sessionRecoverer', ['$location', '$q', '$injector', function($location, $q, $injector) {  
+    angular.module('app').factory('sessionRecoverer', ['$location', '$q', '$injector', function($location, $q, $injector) {
         var sessionRecoverer = {
             responseError: function(response) {
                 if (response.status == 401){
@@ -16,14 +16,13 @@
         return sessionRecoverer;
     }]);
     
-    
     /*global angular*/
     angular.module('app').config(config);
     
     config.$inject = ['$routeProvider', '$httpProvider'];
     function config($routeProvider, $httpProvider) {
 
-        $httpProvider.interceptors.push('sessionRecoverer');        
+        $httpProvider.interceptors.push('sessionRecoverer');
         
         $routeProvider
             .when('/', {
@@ -85,7 +84,6 @@
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/404.html'
             });
-            
     }
     
 })();

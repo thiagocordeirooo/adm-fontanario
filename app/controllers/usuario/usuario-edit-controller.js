@@ -17,7 +17,7 @@
                 vm.myUser = true;
                 userName = $rootScope.currentUser.UserName;
             }else{
-                userName = $routeParams.id
+                userName = $routeParams.id;
             }
         })();
 
@@ -27,8 +27,6 @@
 
         function save(user){
             UsuarioService.Update(user, function (res){
-
-                
                 if (vm.myUser) {
                     updateCookie(res);
                 }

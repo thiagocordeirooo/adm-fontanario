@@ -1,0 +1,16 @@
+<style>* { box-sizing:border-box; }
+
+  body {
+    font-family: Helvetica;
+    background: #eee;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  form {
+    width: 380px;
+    margin: 4em auto;
+    padding: 3em 2em 2em 2em;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+  }</style><div class="col-md-4 col-md-offset-4" style="padding-top:5%"><image data-ng-src="app/src/images/logo.png"></image></div><div class="clearfix"></div><form name="formLogin"><h2 class="text-center">Login</h2><div class="form-group" ng-class="{ 'has-error' : formLogin.username.$invalid && !formLogin.username.$pristine }"><label ng-show="formLogin.username.$dirty">Usuário</label><input type="text" name="username" class="form-control" placeholder="Usuário" ng-model="vm.user.username" required ng-readonly="spinnerActive"><p ng-show="formLogin.username.$invalid && !formLogin.username.$pristine" class="help-block">Campo Obrigatório</p></div><div class="form-group" ng-class="{ 'has-error' : formLogin.password.$invalid && !formLogin.password.$pristine }"><label ng-show="formLogin.password.$dirty">Senha</label><input type="password" name="password" class="form-control" placeholder="Senha" ng-model="vm.user.password" required ng-readonly="spinnerActive"><p ng-show="formLogin.password.$invalid && !formLogin.password.$pristine" class="help-block">Campo Obrigatório</p></div><button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="vm.login(vm.user)" ng-disabled="formLogin.$invalid || spinnerActive">Entrar</button></form>

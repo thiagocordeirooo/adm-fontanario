@@ -7,13 +7,6 @@
 
     function LogIntegracaoListController($rootScope, $location){
         var vm = this;
-        
-        activate();
-        ////////////////////////////////////
 
-        function activate(){
-            // Inicializador
-
-        }
     }
 })();

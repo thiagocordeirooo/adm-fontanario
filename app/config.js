@@ -6,7 +6,6 @@
 
 	run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
 	function run($rootScope, $location, $cookies, $http){
-			$rootScope.baseURL = 'https://api-admfontanario.azurewebsites.net/api/';	
 			$rootScope.theme = 'paper';
 	
 	        $rootScope.$on("$routeChangeStart", function(event, next, current) {
@@ -17,7 +16,7 @@
 		        		$rootScope.isAuthenticated = false;
 		        		$rootScope.theme = 'paper';
 		        		$rootScope.themeColor = '#93C54B';
-	            		$http.defaults.headers.common = {Accept: "application/json, text/plain, */*"};
+	            		$http.defaults.headers.common = { Accept: "application/json, text/plain, */*" };
 		        	}else{
 		        		objCookie = angular.fromJson(objCookie);
 		        		$http.defaults.headers.common['Authorization'] = 'Bearer ' + objCookie.token;
@@ -31,7 +30,6 @@
 		            }
 	        	}
 	        });
-	        
 	        
 		    function setThemeColor(theme){
 	            switch (theme) {
@@ -49,7 +47,6 @@
 	                    break;                    
 	            }
 	        }
-	        
 	    }
 
 	/*global toastr*/
@@ -70,6 +67,5 @@
 	  "showMethod": "fadeIn",
 	  "hideMethod": "fadeOut"
 	}
-	
 	
 })();

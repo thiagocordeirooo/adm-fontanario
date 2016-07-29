@@ -29,7 +29,7 @@
 
         <div class="form-group col-md-3" ng-class="{ 'has-error' : formConsumidor.telefone.$invalid && !formConsumidor.telefone.$pristine }">
             <label for="telefone">Telefone</label>
-            <input type="number" class="form-control" name="telefone" id="telefone" ng-model="vm.consumidor.Telefone" ng-maxlength="13" />
+            <input type="number" class="form-control" name="telefone" id="telefone" ng-model="vm.consumidor.Telefone" ng-maxlength="13" ng-pattern="/^\d{4,5}-\d{4}$/" />
             <p ng-show="formConsumidor.telefone.$error.maxlength && !formConsumidor.telefone.$pristine" class="help-block">Máximo 13 caracteres</p>
         </div>          
         <div class="clearfix"></div>

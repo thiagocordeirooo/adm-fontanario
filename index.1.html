@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <title>Sistema de Administração Fontanário Caldas Imperatriz</title>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="{{ themeColor }}" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+        
+    <link rel="stylesheet" ng-href="styles/{{ theme }}/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div ng-include="'app/views/header.html'" ng-show="isAuthenticated"></div>
+
+<div class="container">
+    <div ng-view ></div>
+</div>
+
+<script src="js/scripts.1.0.0.min.js"></script>
+
+</body>
+</html>

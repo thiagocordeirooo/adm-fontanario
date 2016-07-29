@@ -4,9 +4,9 @@
     /*global angular*/
     angular.module('app').factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$rootScope'];
+    AuthenticationService.$inject = ['$http', 'CONSTANTS'];
 
-    function AuthenticationService($http, $rootScope) {
+    function AuthenticationService($http, CONSTANTS) {
         var service = {};
 
         service.Login = Login;
@@ -14,8 +14,8 @@
         return service;
 
         function Login(user, callback) {
-            var data = "grant_type=password&username=" + user.username + "&password=" + user.password;
-            $http.post($rootScope.baseURL + 'security/token', data, { headers: {'Content-Type': 'application/x-www-form-urlencoded'} })
+            var data = "grant_type=password&username=" + user.username + "&password=" + user.password; //Base64.encode(user.password);
+            $http.post(CONSTANTS.baseURL + 'security/token', data, { headers: {'Content-Type': 'application/x-www-form-urlencoded'} })
             .success(function (response) {
                  callback(response);
             })
@@ -24,7 +24,6 @@
                 toastr.error(data.error_description, 'Falha ao autenticar');
             });
         }
-
     }
 
     // Base64 encoding service used by AuthenticationService

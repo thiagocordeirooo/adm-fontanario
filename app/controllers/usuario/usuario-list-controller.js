@@ -11,6 +11,9 @@
         vm.sort = sort;
         vm.edit = edit;
         
+        vm.orderBy = 'Name';
+        vm.reverse = true;
+        
         UsuarioService.GetAll(function (res){
             vm.usuarios = res.data;
         });
@@ -23,7 +26,5 @@
             vm.orderBy = orderBy;
             vm.reverse = !vm.reverse;
         }
-        vm.orderBy = 'Name';
-        vm.reverse = true;
     }
 })();

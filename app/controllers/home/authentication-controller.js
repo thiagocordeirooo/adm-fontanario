@@ -8,8 +8,7 @@
 
     function AuthenticationController($rootScope, $location, $http, $cookies, AuthenticationService, UsuarioService){
         var vm = this;
-        vm.login = login;        
-        
+        vm.login = login;
 
         (function initController() {
             vm.user = { username : '', password : '', remember : false };
@@ -28,7 +27,7 @@
 
         function SetCredentials(user, data, redirectToIndex) {   
             $rootScope.isAuthenticated = true;
-            $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
+            $http.defaults.headers.common.Authorization = 'Bearer ' + data.access_token;
 
             UsuarioService.GetById(user.username, function(res) {
                  $rootScope.currentUser = res.data;
@@ -66,6 +65,5 @@
                     break;                    
             }
         }
-        
     }
 })();
